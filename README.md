@@ -2,6 +2,10 @@
 
 This deliverable demonstrates authenticating users and storing credentials and authentication tokens in MongoDB.
 
+- Implemented server functions
+- Removed navs on home page
+- added bootstrap dialog for login
+
 ## Study this code
 
 Get familiar with what this code teaches.

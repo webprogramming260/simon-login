@@ -49,15 +49,14 @@ apiRouter.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-// GetMe as represented by the currently authenticated user
-apiRouter.get('/user/me', async (req, res) => {
-  authToken = req.cookies['token'];
-  const user = await DB.getMe(authToken);
+// GetUser returns information about a user
+apiRouter.get('/user/:email', async (req, res) => {
+  const user = await DB.getUser(req.params.email);
   if (user) {
-    res.send({ email: user.email });
+    res.send({ email: user.email, authenticated: !!user.token });
     return;
   }
-  res.status(401).send({ msg: 'Unauthorized' });
+  res.status(404).send({ msg: 'Unknown' });
 });
 
 // GetScores

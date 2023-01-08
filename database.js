@@ -34,10 +34,6 @@ async function createUser(email, password) {
   return user;
 }
 
-async function getMe(authToken) {
-  return userCollection.findOne({ token: authToken });
-}
-
 function addScore(score) {
   scoreCollection.insertOne(score);
 }
@@ -52,4 +48,4 @@ function getHighScores() {
   return cursor.toArray();
 }
 
-module.exports = { getUser, createUser, getMe, addScore, getHighScores };
+module.exports = { getUser, createUser, addScore, getHighScores };
