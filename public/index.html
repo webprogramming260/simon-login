@@ -49,7 +49,10 @@
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
             </div>
-            <div class="modal-body">hey here is where you login</div>
+            <div class="modal-body">
+              <input type="text" id="name" placeholder="Your name here" />
+              <button class="btn btn-primary" onclick="login()">Login</button>
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -58,9 +61,11 @@
               >
                 Cancel
               </button>
-              <button type="button" class="btn btn-primary" onclick="login()">
-                Login
-              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="login()"
+              ></button>
             </div>
           </div>
         </div>
