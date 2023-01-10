@@ -29,7 +29,7 @@
     <main class="container-fluid bg-secondary text-center">
       <div>
         <h1>Welcome to Simon</h1>
-        <div id="loginControls">
+        <div id="loginControls" style="display: none">
           <button
             type="button"
             class="btn btn-primary"
@@ -39,19 +39,39 @@
             Login
           </button>
         </div>
-        <div id="playControls">Play button</div>
+        <div id="playControls" style="display: none">
+          <button type="button" class="btn btn-primary" onclick="play()">
+            Play
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="logout()">
+            Logout
+          </button>
+        </div>
       </div>
 
       <!-- Login modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-secondary">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
-            </div>
             <div class="modal-body">
-              <input type="text" id="name" placeholder="Your name here" />
-              <button class="btn btn-primary" onclick="login()">Login</button>
+              <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="userName"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">🔒</span>
+                <input
+                  class="form-control"
+                  type="password"
+                  id="userPassword"
+                  placeholder="password"
+                />
+              </div>
             </div>
             <div class="modal-footer">
               <button
@@ -61,11 +81,9 @@
               >
                 Cancel
               </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onclick="login()"
-              ></button>
+              <button type="button" class="btn btn-primary" onclick="login()">
+                Login
+              </button>
             </div>
           </div>
         </div>
