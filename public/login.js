@@ -5,6 +5,7 @@
     nameEl.value = userName;
     const user = await getUser(nameEl.value);
     if (user?.authenticated) {
+      document.querySelector('#playerName').textContent = userName;
       setDisplay('loginControls', 'none');
       setDisplay('playControls', 'block');
     } else {
