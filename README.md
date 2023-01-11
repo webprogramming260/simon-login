@@ -4,7 +4,7 @@ This deliverable demonstrates authenticating users and storing credentials and a
 
 You can view this application running here: [Example Simon Login](https://simon-login.cs260.click)
 
-## Login UI
+## Authorization UI
 
 The `public/index.html`, `public/login.js`, and `public/login.css` files provide all the login UI. Bootstrap provides the styling for the controls.
 
