@@ -76,7 +76,8 @@ Get familiar with what this code teaches.
 ## Grading Rubric
 
 - 20% - Project hosted from your production environment
-- 30% - Interface for creating accounts and authenticating users
-- 30% - Successfully store users and credentials in your MongoDB Atlas cluster
+- 20% - Interface for creating account, login, and logout
+- 20% - Endpoints for authentication operations
+- 20% - Successfully uses cookies for authentication token
 - 10% - At least four Git commits for the project (Initial, milestone, ..., milestone, final)
 - 10% - Notes in your start up repository README.md about what you have learned
