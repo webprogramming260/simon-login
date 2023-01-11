@@ -2,9 +2,39 @@
 
 This deliverable demonstrates authenticating users and storing credentials and authentication tokens in MongoDB.
 
-- Implemented server functions
-- Removed navs on home page
-- added bootstrap dialog for login
+You can view this application running here: [Example Simon Login](https://simon-login.cs260.click)
+
+## Login UI
+
+The `public/index.html`, `public/login.js`, and `public/login.css` files provide all the login UI. Bootstrap provides the styling for the controls.
+
+When `index.html` is loaded an anonymous function in `login.js` determines if the user is already authenticated and uses that state to hide or show the login controls.
+
+When a user logs in, logs out, or creates credentials the service endpoints are called.
+
+## Authorization cookie
+
+The application service uses a secure cookie to store the authorization token for an authenticated user.
+
+```js
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
+```
+
+Note the use of secure, httpOnly, and sameSite. Make sure you are familiar with what each of these mean.
+
+When a user is logged in, the cookie is added. When a user makes a secure request, the cookie is checked. When the user logs out, the cookie is removed.
+
+## Application service endpoints
+
+The service endpoints are contained in `index.js`. The endpoints include `authCreate`, `authLogin`, `authLogout`, and `userGet`. These all work with the database to store and get credentials and update the authorization cookie.
+
+A new Express router, `secureApiRouter` wraps the existing router to add a middleware function that verifies that the authorization cookie is valid before passing the request to endpoints that require authorization. That makes it easy to create secure endpoints by just registering them with `secureApiRouter`.
 
 ## Study this code
 
