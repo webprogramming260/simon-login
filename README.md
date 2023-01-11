@@ -42,7 +42,7 @@ Get familiar with what this code teaches.
 
 - Clone the repository to your development environment.
   ```sh
-  git clone https://github.com/webprogramming260/simon-db.git
+  git clone https://github.com/webprogramming260/simon-login.git
   ```
 - Set up your environment variables with your Atlas credentials.
 - Review the code and get comfortable with everything it represents.
@@ -56,7 +56,7 @@ Get familiar with what this code teaches.
 - Modify the project and add authentication support. Refer to the example class application repository for guidance. Remember that you do not need to create an original work. Just focus on learning the concepts that the example project provides. However, you will learn more if you type everything out, and not just copy and paste the code.
 - Set the footer link to point to your code repository. (e.g. https://github.com/yourname/simon)
 - Periodically commit and push your code to your repository as you hit different milestones. (4 commits are required for full credit.)
-- Periodically deploy to your production environment using a copy of the `deployService.sh` script found in the [example class application](https://github.com/webprogramming260/simon-db/blob/main/deployService.sh). Take some time to understand how it works.
+- Periodically deploy to your production environment using a copy of the `deployService.sh` script found in the [example class application](https://github.com/webprogramming260/simon-login/blob/main/deployService.sh). Take some time to understand how it works.
 
   ```sh
   ./deployService.sh -k <yourpemkey> -h <yourdomain> -s simon
