@@ -66,21 +66,31 @@ apiRouter.get('/user/:email', async (req, res) => {
   res.status(404).send({ msg: 'Unknown' });
 });
 
-// GetScores
-apiRouter.get('/scores', async (req, res) => {
-  if (await verifyUser(req, res)) {
-    const scores = await DB.getHighScores();
-    res.send(scores);
+// secureApiRouter verifies credentials for endpoints
+var secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  authToken = req.cookies['token'];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
   }
 });
 
+// GetScores
+secureApiRouter.get('/scores', async (req, res) => {
+  const scores = await DB.getHighScores();
+  res.send(scores);
+});
+
 // SubmitScore
-apiRouter.post('/score', async (req, res) => {
-  if (await verifyUser(req, res)) {
-    await DB.addScore(req.body);
-    const scores = await DB.getHighScores();
-    res.send(scores);
-  }
+secureApiRouter.post('/score', async (req, res) => {
+  await DB.addScore(req.body);
+  const scores = await DB.getHighScores();
+  res.send(scores);
 });
 
 // Default error handler
@@ -92,17 +102,6 @@ app.use(function (err, req, res, next) {
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
-
-// verifyUser exists for the associated authentication token
-async function verifyUser(req, res) {
-  authToken = req.cookies['token'];
-  const user = await DB.getUserByToken(authToken);
-  if (user) {
-    return true;
-  }
-  res.status(401).send({ msg: 'Unauthorized' });
-  return false;
-}
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
