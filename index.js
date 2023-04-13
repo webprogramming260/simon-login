@@ -18,6 +18,9 @@ app.use(cookieParser());
 // Serve up the applications static content
 app.use(express.static('public'));
 
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
+
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
@@ -90,7 +93,7 @@ secureApiRouter.get('/scores', async (req, res) => {
 
 // SubmitScore
 secureApiRouter.post('/score', async (req, res) => {
-  const score = { ...req.body, ip: req.socket.remoteAddress };
+  const score = { ...req.body, ip: req.ip };
   await DB.addScore(score);
   const scores = await DB.getHighScores();
   res.send(scores);
