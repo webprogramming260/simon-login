@@ -1,7 +1,7 @@
 {
   "name": "simon-login",
   "version": "1.0.0",
-  "description": "This demonstrates creating an HTTP service that provides service endpoints. We use this to provide endpoints for getting and updating the scores.",
+  "description": "This demonstrates authenticating users.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
