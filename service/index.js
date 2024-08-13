@@ -22,7 +22,7 @@ app.use(express.static('public'));
 app.set('trust proxy', true);
 
 // Router for service endpoints
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // CreateAuth token for a new user
@@ -72,11 +72,11 @@ apiRouter.get('/user/:email', async (req, res) => {
 });
 
 // secureApiRouter verifies credentials for endpoints
-var secureApiRouter = express.Router();
+const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
-  authToken = req.cookies[authCookieName];
+  const authToken = req.cookies[authCookieName];
   const user = await DB.getUserByToken(authToken);
   if (user) {
     next();
@@ -118,6 +118,6 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
